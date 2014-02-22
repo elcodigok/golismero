@@ -1,0 +1,12 @@
+[Documentation]
+Name        = CeWL
+Description = CeWL plugin.
+              Custom Word List Generator Tool for Password Cracking.
+Author      = Robin Wood
+Version     = 5.0
+Website     = http://www.digininja.org/
+Copyright   = Copyright (C) 2011-2014 GoLismero Project
+License     = GNU Public License
+
+[Arguments]
+args = --depth 2 --min_word_length 5
