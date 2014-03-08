@@ -1,0 +1,10 @@
+[Documentation]
+Name        = Patator
+Description = Patator is a multi-purpose brute-forcer, 
+  with a modular design and a flexible usage.
+  https://code.google.com/p/patator/
+Author      = Daniel Maldonado
+Version     = 0.1
+Website     = http://caceriadespammers.com.ar
+Copyright   = Copyright (C) 2011-2014 GoLismero Project
+License     = GNU Public License
