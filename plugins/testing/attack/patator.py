@@ -59,13 +59,7 @@ class PatatorPlugin(TestingPlugin):
 
     #--------------------------------------------------------------------------
     def get_accepted_types(self):
-        #return [URL, Relationship(IP, ServiceFingerprint), Relationship(Domain, ServiceFingerprint), Relationship(IP, Portscan), Relationship(Domain, Portscan)]
-        return [IP, Relationship(IP, ServiceFingerprint), Relationship(IP, Portscan)]
-
-
-    #--------------------------------------------------------------------------
-    def get_accepted_info(self):
-        return [IP, Domain]
+        return [Relationship(IP, ServiceFingerprint), Relationship(IP, Portscan)]
 
 
     #--------------------------------------------------------------------------
@@ -74,7 +68,7 @@ class PatatorPlugin(TestingPlugin):
             Logger.log(info[0])
             Logger.log("Es una instancia de IP")
             pass # hacer algo con la IP
-        else:
+        elif info[0].is_instance(Domain):
             Logger.log("No es una instancia de IP")
             pass # si entra aqui es un Domain en vez de IP
 
@@ -82,9 +76,6 @@ class PatatorPlugin(TestingPlugin):
             Logger.log("Es una instancia de ServiceFingerprint")
             Logger.log(info[1])
             pass # hacer algo con el servicio
-        else:
-            Logger.log("No es una instancia de ServiceFingerprint")
-            pass #si entra aqui es un Portscan
-        if info[1].is_instance(Portscan):
+        elif info[1].is_instance(Portscan):
             Logger.log("Es un Portscan")
             Logger.log(info[1])
