@@ -33,6 +33,7 @@ from time import time
 
 from golismero.api.config import Config
 from golismero.api.data.resource.domain import Domain
+from golismero.api.data.resource.url import URL
 from golismero.api.data.resource.ip import IP
 from golismero.api.data.information.fingerprint import ServiceFingerprint
 from golismero.api.data.information.portscan import Portscan
@@ -58,7 +59,8 @@ class PatatorPlugin(TestingPlugin):
 
     #--------------------------------------------------------------------------
     def get_accepted_types(self):
-        return Relationship(IP, ServiceFingerprint),Relationship(Domain, ServiceFingerprint), Relationship(IP, Portscan), Relationship(Domain, Portscan)
+        #return [URL, Relationship(IP, ServiceFingerprint), Relationship(Domain, ServiceFingerprint), Relationship(IP, Portscan), Relationship(Domain, Portscan)]
+        return [IP, Relationship(IP, ServiceFingerprint), Relationship(IP, Portscan)]
 
 
     #--------------------------------------------------------------------------
@@ -67,10 +69,9 @@ class PatatorPlugin(TestingPlugin):
 
 
     #--------------------------------------------------------------------------
-    def recv_info(self, info):
-        Logger.log(info)
+    def run(self, info):
         if info[0].is_instance(IP):
-            Logger.log(info[0].version)
+            Logger.log(info[0])
             Logger.log("Es una instancia de IP")
             pass # hacer algo con la IP
         else:
@@ -79,7 +80,11 @@ class PatatorPlugin(TestingPlugin):
 
         if info[1].is_instance(ServiceFingerprint):
             Logger.log("Es una instancia de ServiceFingerprint")
+            Logger.log(info[1])
             pass # hacer algo con el servicio
         else:
             Logger.log("No es una instancia de ServiceFingerprint")
             pass #si entra aqui es un Portscan
+        if info[1].is_instance(Portscan):
+            Logger.log("Es un Portscan")
+            Logger.log(info[1])
